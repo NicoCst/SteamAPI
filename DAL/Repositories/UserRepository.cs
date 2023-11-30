@@ -40,7 +40,7 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT FirstName, LastName FROM Friends AS F JOIN Users AS U ON F.FriendId = U.Id WHERE F.UserId = @Id AND F.Validate = 1";
+            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = UNION SELECT * FROM Friends WHERE FriendId = 1";
 
             cmd.Parameters.AddWithValue("Id", id);
             
