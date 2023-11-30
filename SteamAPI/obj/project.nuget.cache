@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "yBXeJF1cy3Fm2fFGVrerPBPorFrMN+zV4ry0w9TZSBL6z+ZW01g/WfyB1XY6CqWP/E4rbKL/5hkGrfN5Jm3Lgw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\NicolasC\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\NicolasC\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\NicolasC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\NicolasC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
