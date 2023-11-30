@@ -36,6 +36,18 @@ public class UserRepository : Repository, IUserRepository
         }    
     }
 
+    public IEnumerable<User> GetAllFriends(int id)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT FirstName, LastName FROM Friends AS F JOIN Users AS U ON F.FriendId = U.Id WHERE F.UserId = @Id AND F.Validate = 1";
+
+            cmd.Parameters.AddWithValue("Id", id);
+            
+            return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
+        }
+    }
+    
     public User? Create(User entity)
     {
         using (SqlCommand cmd = new SqlCommand())
