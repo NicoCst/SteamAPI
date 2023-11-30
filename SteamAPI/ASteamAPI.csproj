@@ -14,4 +14,30 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ToolBox\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ToolBox\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="ToolBox\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ToolBox\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="ToolBox\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="ToolBox\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="ToolBox\obj\ToolBox.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
 </Project>

@@ -146,33 +146,6 @@
             "rid": "win"
           }
         }
-      },
-      "DAL/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "System.Data.SqlClient": "4.8.5",
-          "ToolBox": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DAL.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DAL.dll": {}
-        }
-      },
-      "ToolBox/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "System.Data.SqlClient": "4.8.5"
-        },
-        "compile": {
-          "bin/placeholder/ToolBox.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ToolBox.dll": {}
-        }
       }
     }
   },
@@ -489,21 +462,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "DAL/1.0.0": {
-      "type": "project",
-      "path": "../DAL/DAL.csproj",
-      "msbuildProject": "../DAL/DAL.csproj"
-    },
-    "ToolBox/1.0.0": {
-      "type": "project",
-      "path": "../SteamAPI/ToolBox/ToolBox.csproj",
-      "msbuildProject": "../SteamAPI/ToolBox/ToolBox.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "DAL >= 1.0.0"
+      "System.Data.SqlClient >= 4.8.5"
     ]
   },
   "packageFolders": {
@@ -512,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj",
-      "projectName": "BLL",
-      "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj",
+      "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
+      "projectName": "ToolBox",
+      "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
       "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\obj\\",
+      "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -532,11 +495,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -548,6 +507,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "System.Data.SqlClient": {
+            "target": "Package",
+            "version": "[4.8.5, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
