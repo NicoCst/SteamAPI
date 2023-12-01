@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.Models.Forms;
+using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASteamAPI.Controllers;
@@ -36,9 +37,11 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("AddFriend")]
-    public ActionResult CreateFriendRequest(AddFriendForm form1, AddFriendForm form2)
+    public ActionResult CreateFriendRequest(AddFriendForm form)
     {
-        bool result = _userService.CreateFriendRequest(form1, form2);
+        // UserDTO user = _userService.GetByNickname(form.UserNickname);
+        // UserDTO user2 = _userService.GetByNickname(form.FriendNickname);
+        // bool result = _userService.CreateFriendRequest(user, user2);
 
         return result ? NoContent() : BadRequest();
     }
