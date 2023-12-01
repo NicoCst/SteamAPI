@@ -40,11 +40,32 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = UNION SELECT * FROM Friends WHERE FriendId = 1";
+            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = @Id AND Validate = 1 UNION SELECT * FROM Friends WHERE FriendId = @Id AND Validate = 1";
 
             cmd.Parameters.AddWithValue("Id", id);
             
             return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
+        }
+    }
+
+    public IEnumerable<User> GetFriendsRequests(int id)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = @Id AND Validate = 0 UNION SELECT * FROM Friends WHERE FriendId = @Id AND Validate = 0";
+            
+            return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
+        }
+    }
+
+    public bool AcceptFriendRequest(int id)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText =
+                "UPDATE Friends SET Validates = 1 WHERE UserId = @Id AND Validate = 0 OR FriendId = @Id AND Validate = 0";
+                
+            return cmd.CustomNonQuery(ConnectionString) == 1;
         }
     }
     

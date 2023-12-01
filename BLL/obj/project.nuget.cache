@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sjDJEl7RSwQ/JyY1hQUmF4VvQvOF71ZwQtF+Zxp3JWcSRwZfACd4MHnZI9DUxtUNZ2A4YdPkkEcpzQzhrXdzNQ==",
+  "dgSpecHash": "x2iMg5HKenL5xvl7iRQsg5fxwm28/cunmRVqGYpe0j+lb/JzBVr0HQQDXU+gTCWIPtRZwX61WSK8uh0CRSaptQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\NicolasC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

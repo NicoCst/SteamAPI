@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Si7E7kvx2tOf3sRmKhcDitATELxhpA3YEDt3bHZirePw/tV+JWdomX2+gIBbxg04Em1RKsOtZrK+wW5dDsD9cw==",
+  "dgSpecHash": "XI4LOHbgi/4d4fM3lEUaRkZw4GpmsgZlJ/j9Ou3xgnxVb6OOSu29cN88vcxn/LR58RYHWJqrLV6ydKaOZpXikw==",
   "success": true,
   "projectFilePath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\NicolasC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\NicolasC\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
