@@ -1,3 +1,5 @@
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.Interfaces;
 using DAL.Repositories;
 
@@ -11,7 +13,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(builder.Configuration.GetConnectionString("Main")));
+builder.Services.AddScoped<IUserService, UserService>();
 
+// builder.Services.AddScoped<IGameRepository, GameRepository>(x => new GameRepository(builder.Configuration.GetConnectionString("Main")));
+// builder.Services.AddScoped<IGameService, GameService>();
+//
+// builder.Services.AddScoped<IAuthService, AuthService>();
+//
+// builder.Services.AddScoped<IJwtService, JwtService>(x => new JwtService(builder.Configuration["JWT:SecretKey"], builder.Configuration["JWT:ExpirationDays"]));
 
 var app = builder.Build();
 

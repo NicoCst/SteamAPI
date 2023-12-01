@@ -40,7 +40,7 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = @Id AND Validate = 1 UNION SELECT * FROM Friends WHERE FriendId = @Id AND Validate = 1";
+            cmd.CommandText = "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE ((f.UserId = @Id AND u.Id != @Id) OR (f.FriendId = @Id AND u.Id != @Id)) AND f.Validate = 1";
 
             cmd.Parameters.AddWithValue("Id", id);
             
@@ -52,7 +52,7 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT * FROM Friends WHERE UserId = @Id AND Validate = 0 UNION SELECT * FROM Friends WHERE FriendId = @Id AND Validate = 0";
+            cmd.CommandText = "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE (f.UserId = @Id OR f.FriendId = @Id) AND f.Validate = 0";
             
             return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
         }

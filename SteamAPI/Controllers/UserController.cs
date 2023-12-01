@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using BLL.Models.Forms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASteamAPI.Controllers;
@@ -13,9 +14,26 @@ public class UserController : ControllerBase
     {
         _userService = userService;
     }
-    // GET
-    public IActionResult Index()
+    
+    [HttpGet("GetAllFriends/{id:int}")]
+    public ActionResult<IEnumerable<UserDTO>> GetAllFriends(int id)
     {
-        return Ok();
+        return Ok(_userService.GetAllFriends(id));
+    }
+    
+    [HttpPost]
+    public ActionResult<UserDTO> Create(UserForm form) 
+    { 
+        UserDTO user = _userService.Create(form);
+
+        return user == null ? BadRequest() : Ok(user);
+    }
+    
+    [HttpPut("{id:int}")]
+    public IActionResult Update(int id, UserForm form)
+    {
+        bool result = _userService.Update(id, form);
+
+        return result ? NoContent() : BadRequest();
     }
 }
