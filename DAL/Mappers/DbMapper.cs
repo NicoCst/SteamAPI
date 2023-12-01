@@ -12,6 +12,7 @@ public static class DbMapper
             Id = Convert.ToInt32(reader["Id"]),
             FirstName = reader["FirstName"].ToString(),
             LastName = reader["LastName"].ToString(),
+            NickName = reader["NickName"].ToString(),
             Email = reader["Email"].ToString(),
             Password = reader["Password"].ToString(),
             IsDev = Convert.ToInt32(reader["IsDev"]),

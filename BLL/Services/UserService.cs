@@ -31,6 +31,13 @@ public class UserService : IUserService
         return _userRepository.GetAllFriends(id).Select(x => x.ToUserDto());
     }
 
+    public bool CreateFriendRequest(AddFriendForm form1, AddFriendForm form2)
+    {
+        User user1 = _userRepository.GetByNickname(form1.UserNickname);
+        User user2 = _userRepository.GetByNickname(form2.FriendNickname);
+        return _userRepository.CreateFriendRequest(user1, user2);
+    }
+    
     public IEnumerable<UserDTO> GetFriendsRequest(int id)
     {
         return _userRepository.GetFriendsRequests(id).Select(x => x.ToUserDto());

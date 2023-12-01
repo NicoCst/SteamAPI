@@ -12,6 +12,7 @@ public static class UserMapper
             Id = form.Id,
             FirstName = form.FirstName,
             LastName = form.LastName,
+            NickName = form.NickName,
             Email = form.Email,
             Password = form.Password,
             IsDev = form.IsDev,
@@ -25,6 +26,7 @@ public static class UserMapper
             Id = entity.Id,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
+            NickName = entity.NickName,
             Email = entity.Email,
             IsDev = entity.IsDev,
         };

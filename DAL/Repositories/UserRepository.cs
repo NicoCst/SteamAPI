@@ -36,6 +36,18 @@ public class UserRepository : Repository, IUserRepository
         }    
     }
 
+    public User? GetByNickname(string nickname)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT * FROM Users WHERE NickName = @NickName";
+
+            cmd.Parameters.AddWithValue("NickName", nickname);
+            
+            return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x)).SingleOrDefault();
+        }
+    }
+
     public IEnumerable<User> GetAllFriends(int id)
     {
         using (SqlCommand cmd = new SqlCommand())
@@ -52,7 +64,7 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE (f.UserId = @Id OR f.FriendId = @Id) AND f.Validate = 0";
+            cmd.CommandText = "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE ((f.UserId = @Id AND u.Id != @Id) OR (f.FriendId = @Id AND u.Id != @Id)) AND f.Validate = 0";
             
             return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
         }
@@ -73,10 +85,11 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "INSERT INTO Users OUTPUT inserted.id VALUES (@FirstName, @LastName, @Email, @Password, @IsDev, @IsPlaying, @Wallet)";
+            cmd.CommandText = "INSERT INTO Users OUTPUT inserted.id VALUES (@FirstName, @LastName, @NickName, @Email, @Password, @IsDev, @IsPlaying, @Wallet)";
 
             cmd.Parameters.AddWithValue("FirstName", entity.FirstName);
             cmd.Parameters.AddWithValue("LastName", entity.LastName);
+            cmd.Parameters.AddWithValue("NickName", entity.LastName);
             cmd.Parameters.AddWithValue("Email", entity.Email);
             cmd.Parameters.AddWithValue("Password", entity.Password);
             cmd.Parameters.AddWithValue("IsDev", entity.IsDev);
@@ -89,6 +102,26 @@ public class UserRepository : Repository, IUserRepository
         }
     }
 
+    public bool CreateFriendRequest(User entity1, User entity2)
+    {
+        if (entity1 == null || entity2 == null)
+        {
+            throw new ArgumentNullException("entity1 and entity2 cannot be null");
+        }
+
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "INSERT INTO Friends VALUES (@UserId, @FriendId, @Date, @Validate)";
+        
+            cmd.Parameters.AddWithValue("UserId", entity1.Id);
+            cmd.Parameters.AddWithValue("FriendId", entity2.Id);
+            cmd.Parameters.AddWithValue("Date", DateTime.Now);
+            cmd.Parameters.AddWithValue("Validate", 0);
+            
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+     
     public bool Update(User entity)
     {
         using(SqlCommand cmd = new SqlCommand())
@@ -96,12 +129,14 @@ public class UserRepository : Repository, IUserRepository
             cmd.CommandText = "UPDATE Users " +
                               "SET FirstName = @FirstName, " +
                               "LastName = @LastName, " +
+                              "NickName = @NickName, " +
                               "Email = @Email, " +
                               "Password = @Password " +
                               "WHERE Id = @Id";
 
             cmd.Parameters.AddWithValue("FirstName", entity.FirstName);
             cmd.Parameters.AddWithValue("LastName", entity.LastName);
+            cmd.Parameters.AddWithValue("NickName", entity.LastName);
             cmd.Parameters.AddWithValue("Email", entity.Email);
             cmd.Parameters.AddWithValue("Password", entity.Password);
             cmd.Parameters.AddWithValue("IsDev", entity.IsDev);

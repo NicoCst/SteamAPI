@@ -21,12 +21,26 @@ public class UserController : ControllerBase
         return Ok(_userService.GetAllFriends(id));
     }
     
-    [HttpPost]
+    [HttpGet("GetFriendsRequest/{id:int}")]
+    public ActionResult<IEnumerable<UserDTO>> GetFriendsRequest(int id)
+    {
+        return Ok(_userService.GetFriendsRequest(id));
+    }
+    
+    [HttpPost("Register")]
     public ActionResult<UserDTO> Create(UserForm form) 
     { 
         UserDTO user = _userService.Create(form);
 
         return user == null ? BadRequest() : Ok(user);
+    }
+
+    [HttpPost("AddFriend")]
+    public ActionResult CreateFriendRequest(AddFriendForm form1, AddFriendForm form2)
+    {
+        bool result = _userService.CreateFriendRequest(form1, form2);
+
+        return result ? NoContent() : BadRequest();
     }
     
     [HttpPut("{id:int}")]
