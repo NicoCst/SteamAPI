@@ -65,8 +65,16 @@ public class UserService : IUserService
         return _userRepository.Update(user);
     }
 
-    public bool AcceptFriendRequest(int id)
+    public bool AcceptFriendRequest(AcceptFriendRequestForm form)
     {
-        return _userRepository.AcceptFriendRequest(id);
+        User? user1 = _userRepository.GetByNickname(form.UserNickname);
+        User? user2 = _userRepository.GetByNickname(form.FriendNickname);
+        
+        if (user1 != null && user2 != null)
+        {
+            return _userRepository.AcceptFriendRequest(user1, user2);
+        }
+
+        return false;
     }
 }

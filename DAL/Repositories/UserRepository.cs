@@ -70,12 +70,15 @@ public class UserRepository : Repository, IUserRepository
         }
     }
 
-    public bool AcceptFriendRequest(int id)
+    public bool AcceptFriendRequest(User entity1, User entity2)
     {
         using (SqlCommand cmd = new SqlCommand())
         {
             cmd.CommandText =
-                "UPDATE Friends SET Validates = 1 WHERE UserId = @Id AND Validate = 0 OR FriendId = @Id AND Validate = 0";
+                "UPDATE Friends SET Validate = 1 WHERE (UserId = @UserId AND FriendId = @FriendId) AND Validate = 0";
+            
+            cmd.Parameters.AddWithValue("@UserId", entity1.Id);
+            cmd.Parameters.AddWithValue("@FriendId", entity2.Id);
                 
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }

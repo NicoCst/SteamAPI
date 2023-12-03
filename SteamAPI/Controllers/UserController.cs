@@ -43,12 +43,20 @@ public class UserController : ControllerBase
 
         return result ? NoContent() : StatusCode(422, "Unable to process the request");
     }
-    
+
     [HttpPut("{id:int}")]
     public IActionResult Update(int id, UserForm form)
     {
         bool result = _userService.Update(id, form);
 
         return result ? NoContent() : BadRequest();
+    }
+    
+    [HttpPatch("AcceptFriend")]
+    public IActionResult AcceptFriendRequest(AcceptFriendRequestForm form)
+    {
+        bool result = _userService.AcceptFriendRequest(form);
+
+        return result ? NoContent() : StatusCode(422, "Unable to process the request");
     }
 }
