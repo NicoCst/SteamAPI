@@ -64,7 +64,10 @@ public class UserRepository : Repository, IUserRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE ((f.UserId = @Id AND u.Id != @Id) OR (f.FriendId = @Id AND u.Id != @Id)) AND f.Validate = 0";
+            cmd.CommandText =
+                "SELECT u.* FROM Users u INNER JOIN Friends f ON u.Id = f.UserId OR u.Id = f.FriendId WHERE ((f.UserId = @Id AND u.Id != @Id) OR (f.FriendId = @Id AND u.Id != @Id)) AND f.Validate = 0";
+                
+            cmd.Parameters.AddWithValue("Id", id);
             
             return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x));
         }
