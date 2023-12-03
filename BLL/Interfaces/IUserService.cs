@@ -12,5 +12,6 @@ public interface IUserService
     IEnumerable<UserDTO> GetFriendsRequest(int id);
     bool Update(int id, UserForm entity);
     bool AcceptFriendRequest(AcceptFriendRequestForm form);
+    bool DeleteFriendRequest(DeleteFriendRequestForm form);
     UserDTO Create(UserForm entity);
 }

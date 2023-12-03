@@ -59,4 +59,12 @@ public class UserController : ControllerBase
 
         return result ? NoContent() : StatusCode(422, "Unable to process the request");
     }
+    
+    [HttpDelete("DeleteFriend")]
+    public IActionResult DeleteFriendRequest(DeleteFriendRequestForm form)
+    {
+        bool result = _userService.DeleteFriendRequest(form);
+
+        return result ? NoContent() : StatusCode(422, "Unable to process the request");
+    }
 }

@@ -86,6 +86,20 @@ public class UserRepository : Repository, IUserRepository
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }
     }
+
+    public bool DeleteFriendRequest(User entity1, User entity2)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText =
+                "UPDATE Friends SET Validate = 0 WHERE (UserId = @UserId AND FriendId = @FriendId) AND Validate = 1";
+                
+            cmd.Parameters.AddWithValue("@UserId", entity1.Id);
+            cmd.Parameters.AddWithValue("@FriendId", entity2.Id);
+                
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
     
     public User? Create(User entity)
     {

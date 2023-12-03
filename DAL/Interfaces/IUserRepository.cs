@@ -9,5 +9,6 @@ public interface IUserRepository : IRepository<int, User>
     IEnumerable<User> GetFriendsRequests(int id);
     bool CreateFriendRequest(User entity1, User entity2);
     bool AcceptFriendRequest(User entity1, User entity2);
+    bool DeleteFriendRequest(User entity1, User entity2);
     User? GetByNickname(string nickname);
 }

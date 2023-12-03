@@ -77,4 +77,17 @@ public class UserService : IUserService
 
         return false;
     }
+    
+    public bool DeleteFriendRequest(DeleteFriendRequestForm form)
+    {
+        User? user1 = _userRepository.GetByNickname(form.UserNickname);
+        User? user2 = _userRepository.GetByNickname(form.FriendNickname);
+        
+        if (user1 != null && user2 != null)
+        {
+            return _userRepository.DeleteFriendRequest(user1, user2);
+        }
+
+        return false;
+    }
 }
