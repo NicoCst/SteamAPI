@@ -35,23 +35,24 @@ public class UserService : IUserService
         return _userRepository.GetAllFriends(id).Select(x => x.ToUserDto());
     }
 
-    public bool CreateFriendRequest(AddFriendForm form)
+    public bool CreateFriendRequest(CreateFriendRequestForm requestForm)
     {
-        User? user1 = _userRepository.GetByNickname(form.UserNickname);
-        User? user2 = _userRepository.GetByNickname(form.FriendNickname);
-        return _userRepository.CreateFriendRequest(user1, user2);
+        User? user1 = _userRepository.GetByNickname(requestForm.UserNickname);
+        User? user2 = _userRepository.GetByNickname(requestForm.FriendNickname);
+
+        if (user1 != null && user2 != null)
+        {
+            return _userRepository.CreateFriendRequest(user1, user2);
+        }
+
+        return false;
     }
     
     public IEnumerable<UserDTO> GetFriendsRequest(int id)
     {
         return _userRepository.GetFriendsRequests(id).Select(x => x.ToUserDto());
     }
-
-    public bool Update(UserForm entity)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public bool Update(int id, UserForm form)
     {
         form.Password = BCrypt.Net.BCrypt.HashPassword(form.Password);

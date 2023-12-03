@@ -37,13 +37,11 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("AddFriend")]
-    public ActionResult CreateFriendRequest(AddFriendForm form)
+    public ActionResult CreateFriendRequest(CreateFriendRequestForm requestForm)
     {
-        // UserDTO user = _userService.GetByNickname(form.UserNickname);
-        // UserDTO user2 = _userService.GetByNickname(form.FriendNickname);
-        // bool result = _userService.CreateFriendRequest(user, user2);
+        bool result = _userService.CreateFriendRequest(requestForm);
 
-        return result ? NoContent() : BadRequest();
+        return result ? NoContent() : StatusCode(422, "Unable to process the request");
     }
     
     [HttpPut("{id:int}")]
