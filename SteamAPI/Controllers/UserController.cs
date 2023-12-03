@@ -51,6 +51,14 @@ public class UserController : ControllerBase
 
         return result ? NoContent() : BadRequest();
     }
+
+    [HttpPut("AddMoney")]
+    public IActionResult AddMoney(AddMoneyForm form)
+    {
+        bool result = _userService.AddMoney(form);
+        
+        return result ? Ok() : StatusCode(422, "Unable to process the request"); 
+    }
     
     [HttpPatch("AcceptFriend")]
     public IActionResult AcceptFriendRequest(AcceptFriendRequestForm form)

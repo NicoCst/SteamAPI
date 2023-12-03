@@ -65,6 +65,20 @@ public class UserService : IUserService
         return _userRepository.Update(user);
     }
 
+    public bool AddMoney(AddMoneyForm form)
+    {
+        User user = _userRepository.GetByNickname(form.NickName);
+
+        if (user != null)
+        {
+            float moneyToAdd = form.Money;
+            float totalWallet = user.Wallet + moneyToAdd;
+            return _userRepository.AddMoney(user, totalWallet);
+        }
+
+        return false;
+    }
+    
     public bool AcceptFriendRequest(AcceptFriendRequestForm form)
     {
         User? user1 = _userRepository.GetByNickname(form.UserNickname);

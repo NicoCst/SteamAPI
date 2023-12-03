@@ -141,7 +141,7 @@ public class UserRepository : Repository, IUserRepository
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }
     }
-     
+    
     public bool Update(User entity)
     {
         using(SqlCommand cmd = new SqlCommand())
@@ -167,6 +167,19 @@ public class UserRepository : Repository, IUserRepository
         }
     }
 
+    public bool AddMoney(User entity, float money)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "UPDATE Users SET Wallet = @Wallet WHERE Id = @Id";
+
+            cmd.Parameters.AddWithValue("Id", entity.Id);
+            cmd.Parameters.AddWithValue("Wallet", money);
+            
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+    
     public bool Delete(User entity)
     {
         using (SqlCommand cmd = new SqlCommand())
