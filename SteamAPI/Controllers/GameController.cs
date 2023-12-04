@@ -15,6 +15,8 @@ public class GameController : ControllerBase
         _gameService = gameService;
     }
     
+    // Global Games Functions
+    
     [HttpPost("CreateGame")]
     public ActionResult<GameDTO> Create(GameForm form) 
     { 
@@ -22,4 +24,12 @@ public class GameController : ControllerBase
 
         return user == null ? BadRequest() : Ok(user);
     }
+    
+    // Gamelist Functions
+    
+    [HttpGet("GetAllMyGames")]
+    public ActionResult<IEnumerable<GameDTO>> GetAllMyGames(int id)
+    {
+        return Ok(_gameService.GetAllMyGames(id));
+    } 
 }

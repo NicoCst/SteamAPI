@@ -13,6 +13,7 @@ public class GameRepository : Repository, IGameRepository
     {
     }
     
+    // Global Games Functions
     public IEnumerable<Game> GetAll()
     {
         using(SqlCommand cmd = new SqlCommand()) 
@@ -83,4 +84,19 @@ public class GameRepository : Repository, IGameRepository
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }    
     }
+    
+    // GamesList Functions
+    public IEnumerable<Game> GetAllMyGames(int userId)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText =
+                "SELECT Games.* FROM Games INNER JOIN GamesList ON Games.Id = GamesList.GameId WHERE GamesList.UserId = @UserId";
+
+            cmd.Parameters.AddWithValue("UserId", userId);
+            return cmd.CustomReader(ConnectionString, x => DbMapper.ToGame(x));
+        }
+    }
+
+
 }

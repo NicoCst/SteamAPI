@@ -16,4 +16,9 @@ public class GameService : IGameService
     {
         return _gameRepository.Create(form.ToGame()).ToGameDto();
     }
+    
+    public IEnumerable<GameDTO> GetAllMyGames(int userId)
+    {
+        return _gameRepository.GetAllMyGames(userId).Select(x => x.ToGameDto());
+    }
 }

@@ -5,5 +5,6 @@ namespace DAL.Interfaces;
 
 public interface IGameRepository : IRepository<int, Game>
 {
+    IEnumerable<Game> GetAllMyGames(int userId);
     
 }
