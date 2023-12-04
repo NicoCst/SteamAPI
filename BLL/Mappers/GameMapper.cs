@@ -9,9 +9,11 @@ public static class GameMapper
     {
         return new Game()
         {
-            Id = form.Id,
+            Id = 0,
             Name = form.Name,
-            Genre = form.Genre
+            Genre = form.Genre,
+            Version = form.Version,
+            UserDevId = form.UserDevId
         };
     }
 
@@ -21,7 +23,9 @@ public static class GameMapper
         {
             Id = entity.Id,
             Name = entity.Name,
-            Genre = entity.Genre
+            Genre = entity.Genre,
+            Version = entity.Version,
+            UserDevId = entity.UserDevId
         };
     }
 }

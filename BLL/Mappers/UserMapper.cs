@@ -9,7 +9,7 @@ public static class UserMapper
     {
         return new User()
         {
-            Id = form.Id,
+            Id = 0,
             FirstName = form.FirstName,
             LastName = form.LastName,
             NickName = form.NickName,
