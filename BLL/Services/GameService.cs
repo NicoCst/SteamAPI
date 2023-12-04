@@ -40,7 +40,7 @@ public class GameService : IGameService
         User user1 = _userRepository.GetByNickname(form.Buyer);
         User user2 = _userRepository.GetByNickname(form.Reciever);
         Game game = _gameRepository.GetByTitle(form.Game);
-        
+
         if (user1 != null && user2 != null && game != null)
         {
             if (_gameRepository.IsGameInUserList(user2, game))
@@ -50,11 +50,21 @@ public class GameService : IGameService
 
             float gamePrice = _gameRepository.GetPrice(form.Game);
 
-            user1.Wallet -= gamePrice;
-            
-            return _gameRepository.BuyGame(user1, user2, game);
+            if (user1.Wallet >= gamePrice)
+            {
+                user1.Wallet -= gamePrice;
+
+                if (_gameRepository.BuyGame(user1, user2, game))
+                {
+  
+                    _userRepository.UpdateWallet(user1.Id, user1.Wallet);
+
+                    return true;
+                }
+            }
         }
 
         return false;
     }
+
 }

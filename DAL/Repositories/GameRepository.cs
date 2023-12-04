@@ -149,7 +149,7 @@ public class GameRepository : Repository, IGameRepository
 
             cmd.Parameters.AddWithValue("Name", title);
             
-            return (float)cmd.CustomScalar(ConnectionString);
+            return Convert.ToSingle(cmd.CustomScalar(ConnectionString));
         }
     }
 }

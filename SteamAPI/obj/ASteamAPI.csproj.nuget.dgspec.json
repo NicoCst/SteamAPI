@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj": {}
+    "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ASteamAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj": {
+    "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj",
+        "projectUniqueName": "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\obj\\",
+        "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\caste\\.nuget\\packages\\",
+        "outputPath": "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\caste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj"
+              "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\DAL.csproj": {
+                "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\DAL.csproj"
               }
             }
           }
@@ -69,17 +73,21 @@
         }
       }
     },
-    "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj": {
+    "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj",
+        "projectUniqueName": "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\DAL\\obj\\",
+        "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\caste\\.nuget\\packages\\",
+        "outputPath": "E:\\JetBrains Rider Projects\\SteamAPI\\DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\caste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,8 +101,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj": {
-                "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj"
+              "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj": {
+                "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj"
               }
             }
           }
@@ -134,17 +142,21 @@
         }
       }
     },
-    "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj": {
+    "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ASteamAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj",
+        "projectUniqueName": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ASteamAPI.csproj",
         "projectName": "ASteamAPI",
-        "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ASteamAPI.csproj",
-        "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\obj\\",
+        "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ASteamAPI.csproj",
+        "packagesPath": "C:\\Users\\caste\\.nuget\\packages\\",
+        "outputPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\caste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,8 +170,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\BLL\\BLL.csproj"
+              "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\BLL.csproj": {
+                "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\BLL\\BLL.csproj"
               }
             }
           }
@@ -202,17 +214,21 @@
         }
       }
     },
-    "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj": {
+    "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
+        "projectUniqueName": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
         "projectName": "ToolBox",
-        "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
-        "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\obj\\",
+        "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
+        "packagesPath": "C:\\Users\\caste\\.nuget\\packages\\",
+        "outputPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\caste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

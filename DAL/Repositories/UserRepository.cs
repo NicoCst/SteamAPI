@@ -48,6 +48,18 @@ public class UserRepository : Repository, IUserRepository
         }
     }
 
+    public bool UpdateWallet(int userId, float newWalletAmount)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "UPDATE Users SET Wallet = @NewWalletAmount WHERE Id = @UserId";
+            cmd.Parameters.AddWithValue("NewWalletAmount", newWalletAmount);
+            cmd.Parameters.AddWithValue("UserId", userId);
+
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+    
     public IEnumerable<User> GetAllFriends(int id)
     {
         using (SqlCommand cmd = new SqlCommand())
