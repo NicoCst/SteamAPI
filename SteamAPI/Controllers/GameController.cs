@@ -31,5 +31,13 @@ public class GameController : ControllerBase
     public ActionResult<IEnumerable<GameDTO>> GetAllMyGames(int id)
     {
         return Ok(_gameService.GetAllMyGames(id));
+    }
+
+    [HttpPost("BuyGame")]
+    public IActionResult BuyGame(BuyGameForm form)
+    {
+        bool result = _gameService.BuyGame(form);
+        
+        return result ? Ok() : NotFound("Le jeu est déjà possédé ou il manque un champ à compléter dans le form"); 
     } 
 }

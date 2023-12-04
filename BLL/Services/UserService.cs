@@ -30,6 +30,7 @@ public class UserService : IUserService
     {
         return _userRepository.GetByNickname(nickname).ToUserDto();
     }
+    
     public IEnumerable<UserDTO> GetAllFriends(int id)
     {
         return _userRepository.GetAllFriends(id).Select(x => x.ToUserDto());

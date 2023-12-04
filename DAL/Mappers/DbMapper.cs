@@ -16,7 +16,6 @@ public static class DbMapper
             Email = reader["Email"].ToString(),
             Password = reader["Password"].ToString(),
             IsDev = Convert.ToInt32(reader["IsDev"]),
-            IsPlaying = Convert.ToInt32(reader["IsPlaying"]),
             Wallet = Convert.ToSingle(Convert.ToDecimal(reader["Wallet"]))
         };
     }
