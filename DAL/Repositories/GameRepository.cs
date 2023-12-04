@@ -141,6 +141,20 @@ public class GameRepository : Repository, IGameRepository
         }
     }
 
+    public bool RefundGame(User user, Game game)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText =
+                "DELETE FROM GamesList WHERE ((UserId = @UserId AND GiftId IS NULL) OR (UserId = @UserId AND GiftId = @UserId)) AND PlayTime < 120 AND PurchaseDate >= DATEADD(DAY, -14, GETDATE()) AND GameId = @GameId;";
+
+            cmd.Parameters.AddWithValue("UserId", user.Id);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+            
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+    
     public float GetPrice(string title)
     {
         using (SqlCommand cmd = new SqlCommand())

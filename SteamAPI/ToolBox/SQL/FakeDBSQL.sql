@@ -35,5 +35,5 @@ INSERT INTO GamesList (UserId, GameId, PurchaseDate, PlayTime, GiftId, IsWhished
 VALUES (1, 1, GETDATE(), 10, NULL, 0),
        (2, 2, GETDATE(), 20, NULL, 0),
        (3, 3, GETDATE(), 30, NULL, 0),
-       (4, 4, GETDATE(), 40, NULL, 0),
-       (5, 5, GETDATE(), 50, NULL, 0);
+       (4, 4, GETDATE(), 40, 4, 0),
+       (5, 5, GETDATE(), 50, 5, 0);

@@ -67,4 +67,28 @@ public class GameService : IGameService
         return false;
     }
 
+    public bool RefundGame(RefundGameForm form)
+    {
+        if (form.Title == null || form.NickName == null)
+        {
+            return false;
+        }
+
+        User user = _userRepository.GetByNickname(form.NickName);
+        Game game = _gameRepository.GetByTitle(form.Title);
+        
+        bool isRefundSuccessful = _gameRepository.RefundGame(user, game);
+
+        if (isRefundSuccessful)
+        {
+            float gamePrice = _gameRepository.GetPrice(game.Name);
+            user.Wallet += gamePrice;
+
+            _userRepository.UpdateWallet(user.Id, user.Wallet);
+        }
+
+        return isRefundSuccessful;
+    }
+
+
 }

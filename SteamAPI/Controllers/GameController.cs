@@ -39,5 +39,13 @@ public class GameController : ControllerBase
         bool result = _gameService.BuyGame(form);
         
         return result ? Ok() : NotFound("Le jeu est déjà possédé ou il manque un champ à compléter dans le form"); 
-    } 
+    }
+
+    [HttpDelete("RefundGame")]
+    public IActionResult RefundGame(RefundGameForm form)
+    {
+        bool result = _gameService.RefundGame(form);
+
+        return result ? Ok() : NotFound("Le remboursement n'est pas possible");
+    }
 }
