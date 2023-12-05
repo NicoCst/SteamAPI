@@ -191,6 +191,19 @@ public class UserRepository : Repository, IUserRepository
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }
     }
+
+    public bool TogglePlayingStatut(User user, int statut)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "UPDATE Users SET Statut = @Statut WHERE UserId = @UserId";
+
+            cmd.Parameters.AddWithValue("UserId", user.Id);
+            cmd.Parameters.AddWithValue("Statut", statut);
+
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
     
     public bool Delete(User entity)
     {

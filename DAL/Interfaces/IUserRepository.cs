@@ -12,5 +12,6 @@ public interface IUserRepository : IRepository<int, User>
     bool DeleteFriendRequest(User entity1, User entity2);
     User? GetByNickname(string nickname);
     bool UpdateWallet(int userId, float newWalletAmount);
+    bool TogglePlayingStatut(User user, int statut);
     bool AddMoney(User entity, float money);
 }

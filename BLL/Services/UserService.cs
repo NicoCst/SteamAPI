@@ -65,7 +65,6 @@ public class UserService : IUserService
 
         return _userRepository.Update(user);
     }
-
     public bool AddMoney(AddMoneyForm form)
     {
         User user = _userRepository.GetByNickname(form.NickName);
