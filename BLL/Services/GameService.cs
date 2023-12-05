@@ -43,11 +43,27 @@ public class GameService : IGameService
 
         if (user1 != null && user2 != null && game != null)
         {
+            if (_gameRepository.IsGameInUserList(user2, game) && _gameRepository.IsGameInWishList(user2, game))
+            {
+                float gamePriceWish = _gameRepository.GetPrice(form.Game);
+
+                if (user1.Wallet >= gamePriceWish)
+                {
+                    user1.Wallet -= gamePriceWish;
+                    
+                    _userRepository.UpdateWallet(user1.Id, user1.Wallet);
+
+                    return _gameRepository.BuyWishedGame(user1, user2, game);
+                }
+
+                return false;
+            }
+
             if (_gameRepository.IsGameInUserList(user2, game))
             {
                 return false;
             }
-
+            
             float gamePrice = _gameRepository.GetPrice(form.Game);
 
             if (user1.Wallet >= gamePrice)
@@ -56,14 +72,12 @@ public class GameService : IGameService
 
                 if (_gameRepository.BuyGame(user1, user2, game))
                 {
-  
                     _userRepository.UpdateWallet(user1.Id, user1.Wallet);
 
                     return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -90,5 +104,21 @@ public class GameService : IGameService
         return isRefundSuccessful;
     }
 
+    public bool SetToWishlist(AddToWishlistForm form)
+    {
+        if (form.Title == null || form.NickName == null)
+        {
+            return false;
+        }
 
+        User user = _userRepository.GetByNickname(form.NickName);
+        Game game = _gameRepository.GetByTitle(form.Title);
+
+        if (_gameRepository.IsGameInUserList(user, game))
+        {
+            return _gameRepository.SetToWishlist(user, game);
+        }
+
+        return _gameRepository.AddToWishlist(user, game);
+    }
 }

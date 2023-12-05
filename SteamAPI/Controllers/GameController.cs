@@ -48,4 +48,12 @@ public class GameController : ControllerBase
 
         return result ? Ok() : NotFound("Le remboursement n'est pas possible");
     }
+
+    [HttpPatch("SetToWishlist")]
+    public IActionResult SetToWishlist(AddToWishlistForm form)
+    {
+        bool result = _gameService.SetToWishlist(form);
+
+        return result ? Ok() : NotFound("Imposible de modifier le statut wishlist");
+    }
 }

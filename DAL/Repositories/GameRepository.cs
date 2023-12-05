@@ -123,6 +123,23 @@ public class GameRepository : Repository, IGameRepository
             return count > 0;
         }
     }
+
+    public bool IsGameInWishList(User user, Game game)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText =
+                "SELECT COUNT(*) FROM GamesList WHERE UserId = @UserId AND GameId = @GameId AND IsWhished = @IsWhished";
+            
+            cmd.Parameters.AddWithValue("UserId", user.Id);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+            cmd.Parameters.AddWithValue("IsWhished", 1);
+
+            int count = (int)cmd.CustomScalar(ConnectionString);
+
+            return count > 0;
+        }
+    }
     
     public bool BuyGame(User user1, User user2, Game game)
     {
@@ -141,6 +158,23 @@ public class GameRepository : Repository, IGameRepository
         }
     }
 
+    public bool BuyWishedGame(User user1, User user2, Game game)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "UPDATE GamesList SET PurchaseDate = @PurchaseDate, PlayTime = @PlayTime, GiftId = @GiftId, IsWhished = @IsWhished WHERE UserId = @UserId AND GameId = @GameId";
+
+            cmd.Parameters.AddWithValue("UserId", user2.Id);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+            cmd.Parameters.AddWithValue("PurchaseDate", DateTime.Now);
+            cmd.Parameters.AddWithValue("PlayTime", 0);
+            cmd.Parameters.AddWithValue("GiftId", user1.Id);
+            cmd.Parameters.AddWithValue("IsWhished", 0);
+
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+    
     public bool RefundGame(User user, Game game)
     {
         using (SqlCommand cmd = new SqlCommand())
@@ -151,6 +185,37 @@ public class GameRepository : Repository, IGameRepository
             cmd.Parameters.AddWithValue("UserId", user.Id);
             cmd.Parameters.AddWithValue("GameId", game.Id);
             
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+
+    public bool AddToWishlist(User user, Game game)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "INSERT INTO GamesList VALUES(@UserId, @GameId, @PurchaseDate, @PlayTime, @GiftId, @IsWhished)";
+
+            cmd.Parameters.AddWithValue("UserId", user.Id);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+            cmd.Parameters.AddWithValue("PurchaseDate", DBNull.Value);
+            cmd.Parameters.AddWithValue("PlayTime", 0);
+            cmd.Parameters.AddWithValue("GiftId", user.Id);
+            cmd.Parameters.AddWithValue("IsWhished", 1);
+
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+    
+    public bool SetToWishlist(User user, Game game)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "UPDATE GamesList SET IsWhished = @IsWhished WHERE UserId = @UserId AND GameId = @GameId";
+
+            cmd.Parameters.AddWithValue("IsWhished", 1);
+            cmd.Parameters.AddWithValue("UserId", user.Id);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }
     }

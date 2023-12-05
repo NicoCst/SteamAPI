@@ -10,4 +10,5 @@ public interface IGameService
     float GetPrice(string Title);
     bool BuyGame(BuyGameForm form);
     bool RefundGame(RefundGameForm form);
+    bool SetToWishlist(AddToWishlistForm form);
 }
