@@ -80,6 +80,8 @@ public class GameRepository : Repository, IGameRepository
             cmd.Parameters.AddWithValue("Genre", entity.Genre);
             cmd.Parameters.AddWithValue("Version", entity.Version);
             cmd.Parameters.AddWithValue("UserDevId", entity.UserDevId);
+            cmd.Parameters.AddWithValue("Id", entity.Id);
+
 
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }

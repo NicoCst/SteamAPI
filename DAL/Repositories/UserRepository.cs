@@ -186,6 +186,7 @@ public class UserRepository : Repository, IUserRepository
             cmd.Parameters.AddWithValue("IsDev", entity.IsDev);
             cmd.Parameters.AddWithValue("IsPlaying", entity.IsPlaying);
             cmd.Parameters.AddWithValue("Wallet", entity.Wallet);
+            cmd.Parameters.AddWithValue("Id", entity.Id);
 
             return cmd.CustomNonQuery(ConnectionString) == 1;
         }
