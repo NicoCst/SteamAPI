@@ -3,77 +3,76 @@ using BLL.Models.Forms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASteamAPI.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-
-public class GameController : ControllerBase
+namespace ASteamAPI.Controllers
 {
-    private readonly IGameService _gameService;
-    public GameController(IGameService gameService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GameController : ControllerBase
     {
-        _gameService = gameService;
-    }
-    
-    // Global Games Functions
-    [Authorize]
-    [HttpPost("CreateGame")]
-    public ActionResult<GameDTO> Create(GameForm form) 
-    { 
-        GameDTO user = _gameService.Create(form);
+        private readonly IGameService _gameService;
 
-        return user == null ? BadRequest() : Ok(user);
-    }
+        public GameController(IGameService gameService)
+        {
+            _gameService = gameService;
+        }
 
-    [Authorize]
-    [HttpPut("{id:int}")]
-    public ActionResult Update(int id, GameForm form)
-    {
-        bool result = _gameService.Update(id, form);
+        // POST: api/Game/CreateGame
+        [Authorize]
+        [HttpPost("CreateGame")]
+        public ActionResult<GameDTO> Create(GameForm form)
+        {
+            var game = _gameService.Create(form);
+            return game != null ? Ok(game) : BadRequest();
+        }
 
-        return result ? Ok() : BadRequest();
-    }
-    
-    // Gamelist Functions
-    
-    [HttpGet("GetAllMyGames")]
-    public ActionResult<IEnumerable<GameDTO>> GetAllMyGames(int id)
-    {
-        return Ok(_gameService.GetAllMyGames(id));
-    }
+        // PUT: api/Game/{id}
+        [Authorize]
+        [HttpPut("{id:int}")]
+        public ActionResult Update(int id, GameForm form)
+        {
+            var result = _gameService.Update(id, form);
+            return result ? Ok() : BadRequest();
+        }
 
-    [HttpPost("BuyGame")]
-    public IActionResult BuyGame(BuyGameForm form)
-    {
-        bool result = _gameService.BuyGame(form);
-        
-        return result ? Ok() : NotFound("Le jeu est déjà possédé ou il manque un champ à compléter dans le form"); 
-    }
+        // GET: api/Game/GetAllMyGames
+        [HttpGet("GetAllMyGames/{id:int}")]
+        public ActionResult<IEnumerable<GameDTO>> GetAllMyGames(int id)
+        {
+            var games = _gameService.GetAllMyGames(id);
+            return Ok(games);
+        }
 
-    [HttpDelete("RefundGame")]
-    public IActionResult RefundGame(RefundGameForm form)
-    {
-        bool result = _gameService.RefundGame(form);
+        // POST: api/Game/BuyGame
+        [HttpPost("BuyGame")]
+        public IActionResult BuyGame(BuyGameForm form)
+        {
+            var result = _gameService.BuyGame(form);
+            return result ? Ok() : NotFound("Le jeu est déjà possédé ou il manque un champ à compléter dans le form");
+        }
 
-        return result ? Ok() : NotFound("Le remboursement n'est pas possible");
-    }
+        // DELETE: api/Game/RefundGame
+        [HttpDelete("RefundGame")]
+        public IActionResult RefundGame(RefundGameForm form)
+        {
+            var result = _gameService.RefundGame(form);
+            return result ? Ok() : NotFound("Le remboursement n'est pas possible");
+        }
 
-    [HttpPatch("SetToWishlist")]
-    public IActionResult SetToWishlist(AddToWishlistForm form)
-    {
-        bool result = _gameService.SetToWishlist(form);
+        // PATCH: api/Game/SetToWishlist
+        [HttpPatch("SetToWishlist")]
+        public IActionResult SetToWishlist(AddToWishlistForm form)
+        {
+            var result = _gameService.SetToWishlist(form);
+            return result ? Ok() : NotFound("Imposible de modifier le statut wishlist");
+        }
 
-        return result ? Ok() : NotFound("Imposible de modifier le statut wishlist");
-    }
-    
-    // PriceList Functions
-    [Authorize]
-    [HttpPost("SetNewPrice")]
-    public IActionResult SetNewPrice(SetNewPriceForm form)
-    {
-        bool result = _gameService.SetNewPrice(form);
-
-        return result ? Ok() : NotFound("Impossible de mettre un nouveau prix");
+        // POST: api/Game/SetNewPrice
+        [Authorize]
+        [HttpPost("SetNewPrice")]
+        public IActionResult SetNewPrice(SetNewPriceForm form)
+        {
+            var result = _gameService.SetNewPrice(form);
+            return result ? Ok() : NotFound("Impossible de mettre un nouveau prix");
+        }
     }
 }

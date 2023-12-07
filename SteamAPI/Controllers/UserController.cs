@@ -3,76 +3,81 @@ using BLL.Models.Forms;
 using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASteamAPI.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-
-public class UserController : ControllerBase
+namespace ASteamAPI.Controllers
 {
-    private readonly IUserService _userService;
-    public UserController(IUserService userService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
     {
-        _userService = userService;
-    }
-    
-    [HttpGet("GetAllFriends/{id:int}")]
-    public ActionResult<IEnumerable<UserDTO>> GetAllFriends(int id)
-    {
-        return Ok(_userService.GetAllFriends(id));
-    }
-    
-    [HttpGet("GetFriendsRequest/{id:int}")]
-    public ActionResult<IEnumerable<UserDTO>> GetFriendsRequest(int id)
-    {
-        return Ok(_userService.GetFriendsRequest(id));
-    }
-    
-    [HttpPost("Register")]
-    public ActionResult<UserDTO> Create(UserForm form) 
-    { 
-        UserDTO user = _userService.Create(form);
+        private readonly IUserService _userService;
 
-        return user == null ? BadRequest() : Ok(user);
-    }
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
-    [HttpPost("AddFriend")]
-    public ActionResult CreateFriendRequest(CreateFriendRequestForm requestForm)
-    {
-        bool result = _userService.CreateFriendRequest(requestForm);
+        // GET: api/User/GetAllFriends/{id}
+        [HttpGet("GetAllFriends/{id:int}")]
+        public ActionResult<IEnumerable<UserDTO>> GetAllFriends(int id)
+        {
+            var friends = _userService.GetAllFriends(id);
+            return Ok(friends);
+        }
 
-        return result ? NoContent() : StatusCode(422, "Unable to process the request");
-    }
+        // GET: api/User/GetFriendsRequest/{id}
+        [HttpGet("GetFriendsRequest/{id:int}")]
+        public ActionResult<IEnumerable<UserDTO>> GetFriendsRequest(int id)
+        {
+            var friendRequests = _userService.GetFriendsRequest(id);
+            return Ok(friendRequests);
+        }
 
-    [HttpPut("{id:int}")]
-    public IActionResult Update(int id, UserForm form)
-    {
-        bool result = _userService.Update(id, form);
+        // POST: api/User/Register
+        [HttpPost("Register")]
+        public ActionResult<UserDTO> Create(UserForm form) 
+        { 
+            var user = _userService.Create(form);
+            return user != null ? Ok(user) : BadRequest();
+        }
 
-        return result ? NoContent() : BadRequest();
-    }
+        // POST: api/User/AddFriend
+        [HttpPost("AddFriend")]
+        public ActionResult CreateFriendRequest(CreateFriendRequestForm requestForm)
+        {
+            var result = _userService.CreateFriendRequest(requestForm);
+            return result ? NoContent() : StatusCode(422, "Unable to process the request");
+        }
 
-    [HttpPut("AddMoney")]
-    public IActionResult AddMoney(AddMoneyForm form)
-    {
-        bool result = _userService.AddMoney(form);
-        
-        return result ? Ok() : StatusCode(422, "Unable to process the request"); 
-    }
-    
-    [HttpPatch("AcceptFriend")]
-    public IActionResult AcceptFriendRequest(AcceptFriendRequestForm form)
-    {
-        bool result = _userService.AcceptFriendRequest(form);
+        // PUT: api/User/{id}
+        [HttpPut("{id:int}")]
+        public IActionResult Update(int id, UserForm form)
+        {
+            var result = _userService.Update(id, form);
+            return result ? NoContent() : BadRequest();
+        }
 
-        return result ? NoContent() : StatusCode(422, "Unable to process the request");
-    }
-    
-    [HttpDelete("DeleteFriend")]
-    public IActionResult DeleteFriendRequest(DeleteFriendRequestForm form)
-    {
-        bool result = _userService.DeleteFriendRequest(form);
+        // PUT: api/User/AddMoney
+        [HttpPut("AddMoney")]
+        public IActionResult AddMoney(AddMoneyForm form)
+        {
+            var result = _userService.AddMoney(form);
+            return result ? Ok() : StatusCode(422, "Unable to process the request"); 
+        }
 
-        return result ? NoContent() : StatusCode(422, "Unable to process the request");
+        // PATCH: api/User/AcceptFriend
+        [HttpPatch("AcceptFriend")]
+        public IActionResult AcceptFriendRequest(AcceptFriendRequestForm form)
+        {
+            var result = _userService.AcceptFriendRequest(form);
+            return result ? NoContent() : StatusCode(422, "Unable to process the request");
+        }
+
+        // DELETE: api/User/DeleteFriend
+        [HttpDelete("DeleteFriend")]
+        public IActionResult DeleteFriendRequest(DeleteFriendRequestForm form)
+        {
+            var result = _userService.DeleteFriendRequest(form);
+            return result ? NoContent() : StatusCode(422, "Unable to process the request");
+        }
     }
 }

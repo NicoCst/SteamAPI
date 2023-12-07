@@ -4,40 +4,55 @@ using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASteamAPI.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
-[Route("api/[controller]")]
-[ApiController]
-public class AuthController : ControllerBase
+namespace ASteamAPI.Controllers
 {
-
-    private readonly IAuthService _authService;
-    private readonly IJwtService _jwtService;
-
-    public AuthController(IAuthService authService, IJwtService jwtService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
-        _authService = authService;
-        _jwtService = jwtService;
+        private readonly IAuthService _authService;
+        private readonly IJwtService _jwtService;
 
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    public ActionResult Login(LoginForm form)
-    {
-
-        User? user = _authService.Login(form);
-
-        if (user is null) 
+        public AuthController(IAuthService authService, IJwtService jwtService)
         {
-            return BadRequest();
+            _authService = authService;
+            _jwtService = jwtService;
         }
 
-        if (user.IsDev == 1)
+        /// <summary>
+        /// Authenticate user and generate a JWT token.
+        /// </summary>
+        /// <param name="form">Login information.</param>
+        /// <returns>
+        ///  - 200 OK with a JWT token if authentication is successful.
+        ///  - 400 Bad Request if authentication fails.
+        /// </returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(LoginForm form)
         {
-            return Ok(_jwtService.CreateToken(user));
-        }
+            // Attempt to authenticate the user
+            User? user = _authService.Login(form);
 
-        return Ok();
+            // Check if authentication failed
+            if (user is null)
+            {
+                return BadRequest("Invalid credentials");
+            }
+
+            // Check if the user is a developer (IsDev == 1)
+            if (user.IsDev == 1)
+            {
+                // Generate a JWT token for developers
+                string token = _jwtService.CreateToken(user);
+                return Ok(new { Token = token });
+            }
+
+            // Authentication successful for non-developer users
+            return Ok("Authentication successful");
+        }
     }
 }

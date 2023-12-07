@@ -1,31 +1,38 @@
 ﻿using BLL.Models.Forms;
 using DAL.Entities;
 
-namespace BLL.Mappers;
-
-public static class GameMapper
+namespace BLL.Mappers
 {
-    public static Game ToGame(this GameForm form)
+    public static class GameMapper
     {
-        return new Game()
+        /// <summary>
+        /// Maps a GameForm to a Game entity.
+        /// </summary>
+        public static Game ToGame(this GameForm form)
         {
-            Id = 0,
-            Name = form.Name,
-            Genre = form.Genre,
-            Version = form.Version,
-            UserDevId = form.UserDevId
-        };
-    }
+            return new Game()
+            {
+                Id = 0,
+                Name = form.Name,
+                Genre = form.Genre,
+                Version = form.Version,
+                UserDevId = form.UserDevId
+            };
+        }
 
-    public static GameDTO ToGameDto(this Game entity)
-    {
-        return new GameDTO()
+        /// <summary>
+        /// Maps a Game entity to a GameDTO.
+        /// </summary>
+        public static GameDTO ToGameDto(this Game entity)
         {
-            Id = entity.Id,
-            Name = entity.Name,
-            Genre = entity.Genre,
-            Version = entity.Version,
-            UserDevId = entity.UserDevId
-        };
+            return new GameDTO()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Genre = entity.Genre,
+                Version = entity.Version,
+                UserDevId = entity.UserDevId
+            };
+        }
     }
 }
