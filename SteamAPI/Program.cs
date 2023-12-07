@@ -1,7 +1,10 @@
+using System.Text;
 using BLL.Interfaces;
 using BLL.Services;
 using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +20,24 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IGameRepository, GameRepository>(x => new GameRepository(builder.Configuration.GetConnectionString("Main")));
 builder.Services.AddScoped<IGameService, GameService>();
-//
-// builder.Services.AddScoped<IAuthService, AuthService>();
-//
-// builder.Services.AddScoped<IJwtService, JwtService>(x => new JwtService(builder.Configuration["JWT:SecretKey"], builder.Configuration["JWT:ExpirationDays"]));
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<IJwtService, JwtService>(x => new JwtService(builder.Configuration["JWT:SecretKey"], builder.Configuration["JWT:ExpirationDays"]));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+{
+    o.SaveToken = true;
+    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+    };
+});
+
 
 var app = builder.Build();
 
@@ -32,6 +49,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

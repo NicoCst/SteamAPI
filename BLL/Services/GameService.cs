@@ -22,6 +22,15 @@ public class GameService : IGameService
     {
         return _gameRepository.Create(form.ToGame()).ToGameDto();
     }
+
+    public bool Update(int id, GameForm form)
+    {
+        Game game = form.ToGame();
+
+        game.Id = id;
+
+        return _gameRepository.Update(game);
+    }
     
     // GamesList Functions
     

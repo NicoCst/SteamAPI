@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.Models.Forms;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASteamAPI.Controllers;
@@ -16,13 +17,22 @@ public class GameController : ControllerBase
     }
     
     // Global Games Functions
-    
+    [Authorize]
     [HttpPost("CreateGame")]
     public ActionResult<GameDTO> Create(GameForm form) 
     { 
         GameDTO user = _gameService.Create(form);
 
         return user == null ? BadRequest() : Ok(user);
+    }
+
+    [Authorize]
+    [HttpPut("{id:int}")]
+    public ActionResult Update(int id, GameForm form)
+    {
+        bool result = _gameService.Update(id, form);
+
+        return result ? Ok() : BadRequest();
     }
     
     // Gamelist Functions

@@ -30,6 +30,21 @@ public class UserService : IUserService
     {
         return _userRepository.GetByNickname(nickname).ToUserDto();
     }
+
+    public UserDTO GetByEmail(string email)
+    {
+        return _userRepository.GetByEmail(email).ToUserDto();
+    }
+
+    public bool TogglePlayingStatut(User user, int statut)
+    {
+        if (user.IsPlaying == 0)
+        {
+            return _userRepository.TogglePlayingStatut(user, 1);
+        }
+
+        return _userRepository.TogglePlayingStatut(user, 0);
+    }
     
     public IEnumerable<UserDTO> GetAllFriends(int id)
     {

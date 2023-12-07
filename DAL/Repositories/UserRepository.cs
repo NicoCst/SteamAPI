@@ -48,6 +48,18 @@ public class UserRepository : Repository, IUserRepository
         }
     }
 
+    public User? GetByEmail(string email)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT * FROM Users WHERE Email = @Email";
+
+            cmd.Parameters.AddWithValue("Email", email);
+
+            return cmd.CustomReader(ConnectionString, x => DbMapper.ToUser(x)).SingleOrDefault();
+        }
+    }
+
     public bool UpdateWallet(int userId, float newWalletAmount)
     {
         using (SqlCommand cmd = new SqlCommand())
@@ -168,7 +180,7 @@ public class UserRepository : Repository, IUserRepository
 
             cmd.Parameters.AddWithValue("FirstName", entity.FirstName);
             cmd.Parameters.AddWithValue("LastName", entity.LastName);
-            cmd.Parameters.AddWithValue("NickName", entity.LastName);
+            cmd.Parameters.AddWithValue("NickName", entity.NickName);
             cmd.Parameters.AddWithValue("Email", entity.Email);
             cmd.Parameters.AddWithValue("Password", entity.Password);
             cmd.Parameters.AddWithValue("IsDev", entity.IsDev);
