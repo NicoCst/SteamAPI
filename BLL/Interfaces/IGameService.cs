@@ -10,6 +10,7 @@ public interface IGameService
 
     IEnumerable<GameDTO> GetAllMyGames(int userId);
     float GetPrice(string Title);
+    bool SetNewPrice(SetNewPriceForm form);
     bool BuyGame(BuyGameForm form);
     bool RefundGame(RefundGameForm form);
     bool SetToWishlist(AddToWishlistForm form);

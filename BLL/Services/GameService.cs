@@ -130,4 +130,23 @@ public class GameService : IGameService
 
         return _gameRepository.AddToWishlist(user, game);
     }
+    
+    // PriceList Functions
+
+    public bool SetNewPrice(SetNewPriceForm form)
+    {
+        if (form.Title == null || form.Price == null)
+        {
+            return false;
+        }
+
+        Game game = _gameRepository.GetByTitle(form.Title);
+
+        if (_gameRepository.GetPrice(form.Title) == form.Price)
+        {
+            return false;
+        }
+
+        return _gameRepository.SetNewPrice(game, form.Price);
+    }
 }

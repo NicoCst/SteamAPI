@@ -66,4 +66,14 @@ public class GameController : ControllerBase
 
         return result ? Ok() : NotFound("Imposible de modifier le statut wishlist");
     }
+    
+    // PriceList Functions
+    [Authorize]
+    [HttpPost("SetNewPrice")]
+    public IActionResult SetNewPrice(SetNewPriceForm form)
+    {
+        bool result = _gameService.SetNewPrice(form);
+
+        return result ? Ok() : NotFound("Impossible de mettre un nouveau prix");
+    }
 }

@@ -9,6 +9,7 @@ public interface IGameRepository : IRepository<int, Game>
     bool IsGameInUserList(User user, Game game);
     bool IsGameInWishList(User user, Game game);
     float GetPrice(string title);
+    bool SetNewPrice(Game game, float price);
     Game? GetByTitle(string title);
     bool BuyGame(User user1, User user2, Game game);
     bool BuyWishedGame(User user1, User user2, Game game);

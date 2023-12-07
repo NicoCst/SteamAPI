@@ -226,11 +226,28 @@ public class GameRepository : Repository, IGameRepository
     {
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT Price FROM PricesList JOIN Games G on G.Id = PricesList.GameId WHERE Name = @Name";
+            cmd.CommandText = "SELECT TOP 1 Price FROM PricesList JOIN Games G ON G.Id = PricesList.GameId WHERE Name = @Name ORDER BY PriceDate DESC";
 
             cmd.Parameters.AddWithValue("Name", title);
-            
+
             return Convert.ToSingle(cmd.CustomScalar(ConnectionString));
         }
     }
+
+
+    // PriceList Functions
+    public bool SetNewPrice(Game game, float price)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "INSERT INTO PricesList (PriceDate, Price, GameId) VALUES (@PriceDate, @Price, @GameId)";
+
+            cmd.Parameters.AddWithValue("PriceDate", DateTime.Now);
+            cmd.Parameters.AddWithValue("Price", price);
+            cmd.Parameters.AddWithValue("GameId", game.Id);
+
+            return cmd.CustomNonQuery(ConnectionString) == 1;
+        }
+    }
+
 }
