@@ -143,8 +143,8 @@ namespace DAL.Repositories
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = "SELECT COUNT(*) FROM GamesList WHERE UserId = @UserId AND GameId = @GameId";
-                cmd.Parameters.AddWithValue("UserId", user.Id);
+                cmd.CommandText = "SELECT COUNT(*) FROM GamesList WHERE GiftId != @GiftId AND GameId = @GameId";
+                cmd.Parameters.AddWithValue("GiftId", user.Id);
                 cmd.Parameters.AddWithValue("GameId", game.Id);
 
                 int count = (int)cmd.CustomScalar(ConnectionString);

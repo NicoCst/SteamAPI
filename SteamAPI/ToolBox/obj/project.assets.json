@@ -470,24 +470,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\caste\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\NicolasC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
+      "projectUniqueName": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
       "projectName": "ToolBox",
-      "projectPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
-      "packagesPath": "C:\\Users\\caste\\.nuget\\packages\\",
-      "outputPath": "E:\\JetBrains Rider Projects\\SteamAPI\\SteamAPI\\ToolBox\\obj\\",
+      "projectPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\ToolBox.csproj",
+      "packagesPath": "C:\\Users\\NicolasC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\NicolasC\\Documents\\Cours\\DotNet\\API\\ExoRecapAPI\\SteamAPI\\ToolBox\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\caste\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\NicolasC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
