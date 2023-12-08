@@ -179,14 +179,13 @@ namespace DAL.Repositories
             using (SqlCommand cmd = new SqlCommand())
             {
                 // SQL query to insert a new user
-                cmd.CommandText = "INSERT INTO Users OUTPUT inserted.id VALUES (@FirstName, @LastName, @NickName, @Email, @Password, @IsDev, @IsPlaying, @Wallet)";
+                cmd.CommandText = "INSERT INTO Users OUTPUT inserted.id VALUES (@FirstName, @LastName, @NickName, @Email, @Password, @IsDev, @Wallet)";
                 cmd.Parameters.AddWithValue("FirstName", entity.FirstName);
                 cmd.Parameters.AddWithValue("LastName", entity.LastName);
                 cmd.Parameters.AddWithValue("NickName", entity.NickName);
                 cmd.Parameters.AddWithValue("Email", entity.Email);
                 cmd.Parameters.AddWithValue("Password", entity.Password);
                 cmd.Parameters.AddWithValue("IsDev", entity.IsDev);
-                cmd.Parameters.AddWithValue("IsPlaying", entity.IsPlaying);
                 cmd.Parameters.AddWithValue("Wallet", entity.Wallet);
                 entity.Id = (int)cmd.CustomScalar(ConnectionString);
                 return entity;

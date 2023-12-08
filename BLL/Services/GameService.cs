@@ -24,7 +24,9 @@ namespace BLL.Services
         /// </summary>
         public GameDTO Create(GameForm form)
         {
-            return _gameRepository.Create(form.ToGame()).ToGameDto();
+            Game game = _gameRepository.Create(form.ToGame());
+            _gameRepository.SetNewPrice(game, form.Price);
+            return game.ToGameDto();
         }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace BLL.Services
         {
             Game game = form.ToGame();
             game.Id = id;
+            _gameRepository.SetNewPrice(game, form.Price);
 
             return _gameRepository.Update(game);
         }
