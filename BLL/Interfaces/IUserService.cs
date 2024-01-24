@@ -7,6 +7,7 @@ public interface IUserService
 {
     IEnumerable<UserDTO> GetAll();
     UserDTO? GetByNickname(string nickname);
+    UserDTO? GetByEmail(string email);
     IEnumerable<UserDTO> GetAllFriends(int id);
     bool CreateFriendRequest(CreateFriendRequestForm requestForm);
     IEnumerable<UserDTO> GetFriendsRequest(int id);

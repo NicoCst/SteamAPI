@@ -32,6 +32,13 @@ namespace ASteamAPI.Controllers
             return Ok(friendRequests);
         }
 
+        [HttpGet("GetByEmail")]
+        public ActionResult<UserDTO> GetByEmail(string email)
+        {
+            var user = _userService.GetByEmail(email);
+            return Ok(user);
+        }
+        
         // POST: api/User/Register
         [HttpPost("Register")]
         public ActionResult<UserDTO> Create(UserForm form) 
